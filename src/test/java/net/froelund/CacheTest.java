@@ -17,7 +17,7 @@ public class CacheTest {
     public void setUp() throws Exception {
         cache = new Cache();
         //As @PostConstruct never is run.
-        cache.cachedObjects = new ConcurrentHashMap();
+        cache.initialize();
     }
     @Test
     public void testSingleObject(){

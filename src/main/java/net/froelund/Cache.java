@@ -17,7 +17,7 @@ public class Cache {
 
     @PostConstruct
     public void initialize(){
-
+        cachedObjects = new ConcurrentHashMap();
     }
     public void put(String cacheKey, Object cached){
         cachedObjects.put(cacheKey, cached);
