@@ -3,6 +3,8 @@ package net.froelund;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.Calendar;
+import java.lang.Thread;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -49,5 +51,22 @@ public class CacheTest {
         String cached = "MY TEST VALUE";
         cache.put(cacheKey, cached);
         Assert.assertTrue("Object wasn't in cache.", cache.has(cacheKey));
+    }
+    @Test
+    public void testObjectCount(){
+        String cacheKey = "MY_TEST_KEY";
+        String cached = "MY TEST VALUE";
+        cache.put(cacheKey, cached);
+        Assert.assertEquals("Object count was wrong.", 1, cache.count());
+    }
+    @Test
+    public void testObjectExpires() throws Exception{
+        String cacheKey = "MY_TEST_KEY";
+        String cached = "MY TEST VALUE";
+        Calendar expire = cache.put(cacheKey, cached, 50);
+        Assert.assertNotNull("Cached object was null", cache.get(cacheKey));
+        Thread.sleep(50);
+        Assert.assertNull("Cached object wasn't null", cache.get(cacheKey));
+        
     }
 }
