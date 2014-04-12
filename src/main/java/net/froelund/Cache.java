@@ -54,6 +54,9 @@ public class Cache {
     public int count(){
         return cachedObjects.size();
     }
+    public void clear(){
+        cachedObjects.clear();
+    }
 }
 class CacheObjectWrapper{
     Calendar expire;
